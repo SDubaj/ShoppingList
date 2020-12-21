@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="container">
+    <h2>Shopping List</h2>
+    <div class="addItem">
+        <h2>ADD ITEM</h2></br>
+        <form id="shop-add">
+            <label>
+                Nazwa produktu
+                <input type="text" class="shopItem" placeholder="Nazwa produktu" required value="Jabłka"/>
+                </br>
+            </label>
+            <label>
+                Ilość
+                <input type="number" class="itemAmount" placeholder="1" required value="1"/>
+            </label>
+            <label>
+            <input type="radio" name="food" class="aa" value="sztuk" checked >Sztuk
+            </label>
+            <label>
+                <input type="radio" name="food" value="gram" > Gram
+            </label></br>
+            <label >Kategoria:
+                <select  id="category">
+                    <option value="Warzywa">Warzywa</option>
+                    <option value="Owoce">Owoce</option>
+                    <option value="Nabiał">Nabiał</option>
+                    <option value="Pieczywo">Pieczywo</option>
+                    <option value="Artykuły higieniczne">Artykuły higieniczne</option>
+                </select>
+            </label>
+            
+            </br>
+            <input type="button" class="addingButton" value="Add Item" onclick="add()"/>
+        </form>
+        <div class="List">
+            <h3>Warzywa</h3>
+            <ul class="items-vegetables" id = "vegeList">
+                        
+            </ul>
+            <h3>Owoce</h3>
+            <ul class="items-fruits">
+                
+    </ul>
+        
+        </div>
+    </div>
+
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

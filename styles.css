@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    align-items: center;
+}
+#shop-add-btn{
+    padding:10px;
+    margin:10px;
+}
+#shop-add{
+    align-items: center;
+}
+input{
+    margin:5px;
+}
