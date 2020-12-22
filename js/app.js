@@ -23,7 +23,6 @@ countItems();
 showLists();
 
 
-
 function addItem(){
 	var itemType = document.querySelector('input[name="food"]:checked')
 
@@ -34,7 +33,6 @@ function addItem(){
 		category:itemCategory.value,
 		checked:false
     })
-
 	saveToLS();
     showLists();
 }
@@ -45,7 +43,6 @@ function showList(listType,a){
     let row, name;
     listType.innerHTML = "";
 	
-   
     for (var i=0; i<items.length; i++){
 		if(items[i].category === ""){
 			items.splice(i,1);
@@ -112,8 +109,9 @@ function deleteItem(){
 }
 
 function editItem(){
-	datasetId=this.dataset.id;
-	
+		datasetId=this.dataset.id;
+		
+		//show input to edit product
 		id=document.getElementById ("item" + this.dataset.id);
 		inputName = document.createElement("input");
         inputName.className = "editNameInput form-control";
@@ -121,6 +119,7 @@ function editItem(){
 		inputName.value= items[datasetId].name;
 		id.appendChild(inputName);
 		
+		//show input to edit product
 		inputAmount = document.createElement("input");
         inputAmount.className = "editAmountInput form-control";
         inputAmount.type = "number";
@@ -128,6 +127,7 @@ function editItem(){
 		inputAmount.min=1;
 		id.appendChild(inputAmount);
 		
+		//show button to confirm editing
 		button = document.createElement("input");
         button.className = "confirmEdit btn btn-primary";
         button.type = "button";
@@ -135,19 +135,16 @@ function editItem(){
 		button.addEventListener("click", confirmButton);
 		id.appendChild(button);
 		
-		
+		//disable all edit buttons until editing will be done
 		var cells = document.getElementsByClassName("editButton"); 
 		for (var i = 0; i < cells.length; i++) { 
 			cells[i].disabled = true;
 		}
-		
+		//confirm editing function
 		function confirmButton(){
-			// inputName = document.getElementById("editNameInput");
-			// inputAmount= document.getElementById("editAmountInput");
-			
 			items[datasetId].name = inputName.value;
 			items[datasetId].amount = inputAmount.value;
-			
+			//switch on edit buttons
 			var buttons = document.getElementsByClassName("editButton"); 
 			for (var i = 0; i < buttons.length; i++) { 
 				buttons[i].disabled = false;
@@ -155,18 +152,16 @@ function editItem(){
 			saveToLS();
 			showLists();
 		}
-		
-	
 }
 
-
+//save to localStorage
 function saveToLS(){
     if (localStorage.items == undefined) { 
 	localStorage.items = "[]"; 
 	}
     localStorage.items = JSON.stringify(items);
 }
-
+//couting products
 function countItems(){
 	var i;
 	weight=0;
@@ -183,6 +178,8 @@ function countItems(){
 		}
 	}
 }
+
+//print function
 function printDiv(divName) {
      var printList = document.getElementById(divName).innerHTML;
      var originalContent = document.body.innerHTML;
@@ -192,6 +189,7 @@ function printDiv(divName) {
      document.body.innerHTML = originalContent;
 	 
 }
+//convert to pdf and download list
 function toPDF(){
 	var hideButtonsRemove = document.getElementsByClassName('removeButton');
 	var hideButtonsEdit = document.getElementsByClassName('editButton');
