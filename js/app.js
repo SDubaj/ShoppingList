@@ -10,9 +10,10 @@ const dairyList =document.querySelector(".dairyItems");
 const bakeryList =document.querySelector(".bakeryItems");
 const hygenicsList =document.querySelector(".hygenicItems");
 
+
 var items = [];
 
-//load items from localstorage
+//read items from localstorage
 if (localStorage.items == undefined) { localStorage.items = "[]"; }
 items= JSON.parse(localStorage.items);
 
@@ -34,7 +35,16 @@ function addItem(){
 
 function showList(listType,a){
     let row, name;
-    listType.innerHTML = ""
+    listType.innerHTML = "";
+	
+	// let newItems = [] ; 
+	// for (let i = 0; i < items.length; i++) {
+		// console.log(items[i].category + " " + a);
+    // if (items[i].category == a ) {
+        // newItems.push(items[i]);
+    // }
+	// }
+// //console.log(newItems);
    
     for (var i=0; i<items.length; i++){
 		if(items[i].category === a){
@@ -43,7 +53,8 @@ function showList(listType,a){
 	   row.id = "item" +i;
 	   row.draggable="true";
        listType.appendChild(row);
-  
+       
+       // (C2) ITEM NAME
        itemName = document.createElement("div");
        itemName.className = "itemName";
        itemName.innerHTML = "Produkt: " + items[i].name + "<br> Ilość: " 
@@ -60,6 +71,7 @@ function showList(listType,a){
         removeButton.dataset.id = i;
 		removeButton.dataset.category = a;
         removeButton.addEventListener("click", deleteItem);
+		//removeButton.onclick = deleteItem(newItems);
         row.appendChild(removeButton);
 		
 		editButton = document.createElement("input");
@@ -69,6 +81,7 @@ function showList(listType,a){
         editButton.dataset.id = i;
 		editButton.dataset.category = a;
         editButton.addEventListener("click", editItem);
+		//removeButton.onclick = deleteItem(newItems);
         row.appendChild(editButton);
 		}
     }
@@ -129,11 +142,14 @@ function editItem(){
 			for (var i = 0; i < cells.length; i++) { 
 				cells[i].disabled = false;
 			}
-			
+			console.log(items[datasetId]);
 			saveToLS();
 			showLists();
 		}
+		
+	
 }
+
 
 function saveToLS(){
     if (localStorage.items == undefined) { 
