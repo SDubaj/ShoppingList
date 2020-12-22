@@ -15,6 +15,7 @@ html, body {
 	padding:10px 20px ;
 	
 }
+
 html {
     display: table;
     margin: auto;
@@ -81,5 +82,10 @@ label{
     #non-printable{
 		display:none;
 	}
+}
+@media (max-width: 700px) {
+  .title {
+    text-align:center;
+  }
 }
 

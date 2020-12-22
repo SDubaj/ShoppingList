@@ -33,6 +33,9 @@ function addItem(){
 		category:itemCategory.value,
 		checked:false
     })
+	itemInput.value="";
+	itemAmount.value="";
+	itemCategory.value="";
 	saveToLS();
     showLists();
 }
