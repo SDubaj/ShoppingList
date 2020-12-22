@@ -13,6 +13,7 @@ html, body {
 	margin:auto;
 	height:100%;
 	padding:10px 20px ;
+	
 }
 html {
     display: table;
@@ -58,6 +59,8 @@ label{
 .amountInput{
 	align-items:center;
 	margin:0;
+	text-align:center;
+	padding-bottom:5px;
 }
 .itemName, .itemAmount{
 	margin-bottom:10px;

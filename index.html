@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping List</title>
+
     <link rel="stylesheet" href="css/styles.css">
 	<link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.css"
@@ -13,6 +14,7 @@
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"
 ></script>
+<script src="dist/html2pdf.bundle.min.js"></script>
 </head>
 <body class="container">
 	<div class="main">
@@ -54,7 +56,10 @@
 		  </div>
             
             <input type="submit" class="addingButton btn btn-primary" value="Dodaj" onclick="addItem()"/>
+			<div>
 			<input type="button" class="printButton btn btn-primary" onclick="printDiv('printableArea')" value="Drukuj listę" />
+			<input type="button" class="toPDFButton btn btn-primary" onclick="toPDF()" value="Pobierz PDF" />
+			</div>
         </form>
 		
 		<div class="productsAmount">

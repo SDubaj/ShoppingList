@@ -1,6 +1,5 @@
 const itemInput = document.querySelector(".shopItem");
 const itemAmount = document.querySelector(".itemAmount");
-;
 const itemCategory = document.getElementById("category");
 const addButton = document.querySelector(".addingButton");
 //shopping lists
@@ -17,11 +16,12 @@ var items = [];
 if (localStorage.items == undefined) { localStorage.items = "[]"; }
 items= JSON.parse(localStorage.items);
 
+
 var products = items.length;
 var amount=0,weight=0;
 countItems();
-console.log(items);
 showLists();
+
 
 
 function addItem(){
@@ -34,8 +34,7 @@ function addItem(){
 		category:itemCategory.value,
 		checked:false
     })
-	itemInput.value="";
-	itemAmount.value="";
+
 	saveToLS();
     showLists();
 }
@@ -48,7 +47,10 @@ function showList(listType,a){
 	
    
     for (var i=0; i<items.length; i++){
-		if(items[i].category === a){
+		if(items[i].category === ""){
+			items.splice(i,1);
+		}
+		else if(items[i].category === a){
        row = document.createElement("div");
        row.className = "item item" +i;
 	   row.id = "item" +i;
@@ -169,26 +171,47 @@ function countItems(){
 	var i;
 	weight=0;
 	amount=0;
-	console.log("dziala1")
 	for(i=0;i<items.length;i++){
 		if(items[i].type=="sztuk"){
-			console.log(parseInt(items[i].amount))
 			amount+= parseInt(items[i].amount);
 		}
 		else if(items[i].type=="gram"){
 			weight+= parseInt(items[i].amount);
-			console.log("grams"+ parseInt(items[i].amount))
+		}
+		else if(items[i].type==""){
+			items.splice(i,1);
 		}
 	}
 }
 function printDiv(divName) {
      var printList = document.getElementById(divName).innerHTML;
      var originalContent = document.body.innerHTML;
-
+	 
      document.body.innerHTML = printList;
-
      window.print();
-
      document.body.innerHTML = originalContent;
+	 
 }
+function toPDF(){
+	var hideButtonsRemove = document.getElementsByClassName('removeButton');
+	var hideButtonsEdit = document.getElementsByClassName('editButton');
+	for (var i = 0; i < hideButtonsEdit.length; i++) { 
+				hideButtonsRemove[i].style.display = "none";
+				hideButtonsEdit[i].style.display = "none";
+			}
+	var element = document.getElementById('printableArea');
+	html2pdf(element);
+	timer();
+	
+	function timer() {
+	  setTimeout(showButtons, 3000);
+	}
+	function showButtons(){
+		for (var i = 0; i < hideButtonsEdit.length; i++) { 
+				hideButtonsRemove[i].style.display = "inline-block";
+				hideButtonsEdit[i].style.display = "inline-block";
+			}
+	}
+}
+
     
