@@ -34,9 +34,13 @@ function addItem(){
 		category:itemCategory.value,
 		checked:false
     })
+	itemInput.value="";
+	itemAmount.value="";
 	saveToLS();
     showLists();
 }
+
+
 
 function showList(listType,a){
     let row, name;
@@ -63,6 +67,7 @@ function showList(listType,a){
        removeButton = document.createElement("input");
         removeButton.className = "removeButton btn btn-primary";
         removeButton.type = "button";
+		removeButton.id= "non-printable";
         removeButton.value = "Usuń";
         removeButton.dataset.id = i;
 		removeButton.dataset.category = a;
@@ -71,6 +76,7 @@ function showList(listType,a){
 		
 		editButton = document.createElement("input");
         editButton.className = "editButton btn btn-primary";
+		editButton.id = "non-printable";
         editButton.type = "button";
         editButton.value = "Edycja";
         editButton.dataset.id = i;
@@ -80,7 +86,8 @@ function showList(listType,a){
 		}
     }
 	countItems();
-	productsAmount.innerHTML  = "<h4>Liczba pozycji: " + products + " Ilość produktów: "+ amount  + " Waga produktów: " + weight + "gram </h4>";
+	products = items.length;
+	productsAmount.innerHTML  = "<h5>Liczba pozycji: " + products + " Ilość produktów: "+ amount  + " Waga produktów: " + weight + "gram </h5>";
 	saveToLS();
 	
 }
@@ -174,5 +181,14 @@ function countItems(){
 		}
 	}
 }
+function printDiv(divName) {
+     var printList = document.getElementById(divName).innerHTML;
+     var originalContent = document.body.innerHTML;
 
+     document.body.innerHTML = printList;
+
+     window.print();
+
+     document.body.innerHTML = originalContent;
+}
     

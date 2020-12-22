@@ -17,11 +17,11 @@
 <body class="container">
 	<div class="main">
 	<div class="title">
-		<img src="css/logo.png" alt="logo" height="120px"/>
+		<img src="css/logo.png" alt="logo" height="100px"/>
 	</div>
     <div class="addItem">
 	
-        <h3>Dodaj produkt</h3>
+        <h4>Dodaj produkt</h4>
 		
         <form  class="d-flex flex-column mb-3 shop-add">
 		<div >
@@ -53,30 +53,32 @@
 			</select>
 		  </div>
             
-            <input type="button" class="addingButton btn btn-primary" value="Add Item" onclick="addItem()"/>
+            <input type="submit" class="addingButton btn btn-primary" value="Dodaj" onclick="addItem()"/>
+			<input type="button" class="printButton btn btn-primary" onclick="printDiv('printableArea')" value="Drukuj listę" />
         </form>
+		
 		<div class="productsAmount">
 		
 		</div>
-        <div class="row">
+        <div class="row lists" id="printableArea">
 			<div class="col-sm"> 
-				<h3>Warzywa</h3>
+				<h4>Warzywa</h4>
 				<ul class="vegeItems" ></ul>
 				</div>
 			<div class="col-sm"> 
-				<h3>Owoce</h3>
+				<h4>Owoce</h4>
 				<ul class="fruitsItems" ></ul>
 			</div>
 			<div class="col-sm"> 
-				<h3>Nabiał</h3>
+				<h4>Nabiał</h4>
 				<ul class="dairyItems" ></ul>
 			</div>
 			<div class="col-sm"> 	
-				<h3>Pieczywo</h3>
+				<h4>Pieczywo</h4>
 				<ul class="bakeryItems" ></ul>
 			</div>
 			<div class="col-sm"> 
-				<h3>Higiena</h3>
+				<h4>Higiena</h4>
 				<ul class="hygenicItems" ></ul>
 			</div>
         
