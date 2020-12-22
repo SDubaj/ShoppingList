@@ -12,7 +12,7 @@ const productsAmount = document.querySelector(".productsAmount");
 
 
 var items = [];
-//read items from localstorage
+//load items from localstorage
 if (localStorage.items == undefined) { localStorage.items = "[]"; }
 items= JSON.parse(localStorage.items);
 

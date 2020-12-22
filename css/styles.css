@@ -96,7 +96,6 @@ label{
       font-weight: 600;
       list-style-type: none;
       margin: 10px;
-      /* //width: 250px; */
       line-height: 3.2;
       cursor: move;
       transition: all 200ms;
