@@ -52,7 +52,7 @@ function showList(listType,a){
 		}
 		else if(items[i].category === a){
        row = document.createElement("div");
-       row.className = "item item" +i;
+       row.className = " draggable item item" +i;
 	   row.id = "item" +i;
 	   row.draggable="true";
        listType.appendChild(row);
@@ -114,7 +114,7 @@ function deleteItem(){
 function editItem(){
 		datasetId=this.dataset.id;
 		
-		//show input to edit product
+		//create input to edit product's name
 		id=document.getElementById ("item" + this.dataset.id);
 		inputName = document.createElement("input");
         inputName.className = "editNameInput form-control";
@@ -122,7 +122,7 @@ function editItem(){
 		inputName.value= items[datasetId].name;
 		id.appendChild(inputName);
 		
-		//show input to edit product
+		//create input to edit producst's amount
 		inputAmount = document.createElement("input");
         inputAmount.className = "editAmountInput form-control";
         inputAmount.type = "number";
@@ -130,7 +130,31 @@ function editItem(){
 		inputAmount.min=1;
 		id.appendChild(inputAmount);
 		
-		//show button to confirm editing
+		//array of categories
+		var categories = ["Warzywa","Owoce","Nabiał","Pieczywo","Artykuły higieniczne"];
+		//create select
+		selectList = document.createElement("select");
+		selectList.id = "editCategory";
+		selectList.className= "form-control";
+		id.appendChild(selectList);
+		
+		//create first option (disabled, selected)
+		option = document.createElement("option");
+		option.value = "";
+		option.text = "Wybierz Kategorie";
+		option.disabled=true;
+		option.selected=true;
+		selectList.appendChild(option);
+			
+		//create and append rest of options
+		for (var i = 0; i < categories.length; i++) {
+			 option = document.createElement("option");
+			option.value = categories[i];
+			option.text = categories[i];
+			selectList.appendChild(option);
+		}
+		
+		//create button to confirm editing
 		button = document.createElement("input");
         button.className = "confirmEdit btn btn-primary";
         button.type = "button";
@@ -147,6 +171,7 @@ function editItem(){
 		function confirmButton(){
 			items[datasetId].name = inputName.value;
 			items[datasetId].amount = inputAmount.value;
+			items[datasetId].category = selectList.value;
 			//switch on edit buttons
 			var buttons = document.getElementsByClassName("editButton"); 
 			for (var i = 0; i < buttons.length; i++) { 
@@ -214,5 +239,59 @@ function toPDF(){
 			}
 	}
 }
+
+
+//drag and drop
+function dragStart(e) {
+  this.style.opacity = '0.8';
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.innerHTML);
+};
+
+function dragEnter(e) {
+  this.classList.add('over');
+}
+
+function dragLeave(e) {
+  e.stopPropagation();
+  this.classList.remove('over');
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function dragDrop(e) {
+  if (dragSrcEl != this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData('text/html');
+  }
+  return false;
+}
+
+function dragEnd(e) {
+  var listItens = document.querySelectorAll('.draggable');
+  [].forEach.call(listItens, function(item) {
+    item.classList.remove('over');
+  });
+  this.style.opacity = '1';
+}
+
+function addEventsDragAndDrop(el) {
+  el.addEventListener('dragstart', dragStart, false);
+  el.addEventListener('dragenter', dragEnter, false);
+  el.addEventListener('dragover', dragOver, false);
+  el.addEventListener('dragleave', dragLeave, false);
+  el.addEventListener('drop', dragDrop, false);
+  el.addEventListener('dragend', dragEnd, false);
+}
+
+var listItens = document.querySelectorAll('.draggable');
+[].forEach.call(listItens, function(item) {
+  addEventsDragAndDrop(item);
+});
 
     

@@ -89,3 +89,36 @@ label{
   }
 }
 
+/* drag and drop */
+.draggable {
+      will-change: transform;
+      font-family: $fontFamily;
+      font-weight: 600;
+      list-style-type: none;
+      margin: 10px;
+      width: 250px;
+      line-height: 3.2;
+      cursor: move;
+      transition: all 200ms;
+      margin: 10px auto;
+      position: relative;
+      } 
+.draggable:after{
+        right: 7px;
+        font-size: 10px;
+        position: absolute;
+        cursor: pointer;
+        line-height: 5;
+        transition: all 200ms;
+        transition-timing-function: cubic-bezier(0.48, 0.72, 0.62, 1.50);
+        transform: translateX(120%);
+        opacity: 0;
+}
+.draggable:hover:after{
+	opacity: 1;
+}
+.over {
+  transform: scale(1.2, 1.2);
+}
+    
+
