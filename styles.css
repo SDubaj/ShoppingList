@@ -30,7 +30,6 @@ input{
     margin:5px;
 }
 .list{
-	//background-color:#80DEEA;
 	background: rgb(154,154,241);
 background: radial-gradient(circle, rgba(154,154,241,1) 13%, rgba(86,86,224,1) 71%, rgba(65,92,223,1) 100%);
 }

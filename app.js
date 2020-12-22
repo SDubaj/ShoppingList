@@ -1,6 +1,5 @@
 const itemInput = document.querySelector(".shopItem");
 const itemAmount = document.querySelector(".itemAmount");
-;
 const itemCategory = document.getElementById("category");
 const addButton = document.querySelector(".addingButton");
 //shopping lists
@@ -12,10 +11,16 @@ const hygenicsList =document.querySelector(".hygenicItems");
 
 var items = [];
 
+
 //load items from localstorage
 if (localStorage.items == undefined) { localStorage.items = "[]"; }
 items= JSON.parse(localStorage.items);
 
+var products = items.length;
+var amount,weight;
+countItems()
+
+console.log("amount"+ items);
 showLists();
 
 function addItem(){
@@ -140,6 +145,15 @@ function saveToLS(){
 	localStorage.items = "[]"; 
 	}
     localStorage.items = JSON.stringify(items);
+}
+
+function countItems(){
+	var i;
+	for(i=0;i<items.length;i++){
+		if(items[i].type=="sztuk"){
+			amount+=items[i].amount;
+		}
+	}
 }
 
 
